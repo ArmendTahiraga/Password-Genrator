@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Karla:wght@800&display=swap");
-body {
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Karla:wght@800&display=swap");body {
 	margin: 0;
 	background-color: #383838;
 	text-align: center;
@@ -102,7 +101,6 @@ body {
 	text-align: center;
 	color: #55f991;
 	padding-top: 5px;
-	cursor: pointer;
 }
 
 #second-password {

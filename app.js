@@ -13,34 +13,10 @@ let passwordLength = 15;
 length.addEventListener("keydown", setPasswordLength);
 generate.addEventListener("click", generatePassword);
 
-firstPassword.addEventListener("click", () => {
-	document.execCommand("copy");
-});
-firstPassword.addEventListener("copy", (event) => {
-	event.preventDefault();
-	if (event.clipboardData) {
-		event.clipboardData.setData("text/plain", firstPassword.textContent);
-	}
-	firstMessage.style.animation = "appear 1.5s ease-in-out";
-
-	setTimeout(() => (firstMessage.style.animation = ""), 1500);
-});
-
-secondPassword.addEventListener("click", () => {
-	document.execCommand("copy");
-});
-secondPassword.addEventListener("copy", (event) => {
-	event.preventDefault();
-	if (event.clipboardData) {
-		event.clipboardData.setData("text/plain", secondPassword.textContent);
-	}
-	secondMessage.style.animation = "appear 1.5s ease-in-out";
-
-	setTimeout(() => (secondMessage.style.animation = ""), 1500);
-});
-
 function setPasswordLength() {
-	passwordLength = document.getElementById("set-length").value;
+	if (document.getElementById("set-length").value) {
+		passwordLength = document.getElementById("set-length").value;
+	}
 }
 
 optionNumbers.hasNumbers = false;
@@ -98,12 +74,43 @@ function generatePassword() {
 	}
 
 	for (let i = 0; i < passwordLength; i++) {
-		let randomIndex = Math.floor(Math.random() * result.length);
+		const randomIndex = Math.floor(Math.random() * result.length);
 		firstPassword.textContent += result[randomIndex];
 	}
 
 	for (let i = 0; i < passwordLength; i++) {
-		let randomIndex = Math.floor(Math.random() * result.length);
+		const randomIndex = Math.floor(Math.random() * result.length);
 		secondPassword.textContent += result[randomIndex];
 	}
+
+	firstPassword.style.cursor = "pointer";
+	secondPassword.style.cursor = "pointer";
+
+	firstPassword.addEventListener("click", () => {
+		document.execCommand("copy");
+	});
+
+	firstPassword.addEventListener("copy", (event) => {
+		event.preventDefault();
+		if (event.clipboardData) {
+			event.clipboardData.setData("text/plain", firstPassword.textContent);
+		}
+		firstMessage.style.animation = "appear 1s ease-in-out";
+
+		setTimeout(() => (firstMessage.style.animation = ""), 1500);
+	});
+
+	secondPassword.addEventListener("click", () => {
+		document.execCommand("copy");
+	});
+
+	secondPassword.addEventListener("copy", (event) => {
+		event.preventDefault();
+		if (event.clipboardData) {
+			event.clipboardData.setData("text/plain", secondPassword.textContent);
+		}
+		secondMessage.style.animation = "appear 1s ease-in-out";
+
+		setTimeout(() => (secondMessage.style.animation = ""), 1500);
+	});
 }
